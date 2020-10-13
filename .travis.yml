@@ -1,0 +1,13 @@
+dist: bionic
+sudo: required
+language: generic
+
+
+install:
+  - travis_retry sudo apt-get update
+  - travis_wait 30 sudo apt-get -y install -qq python3 libboost-thread-dev
+
+script:
+  - git clone https://github.com/mesonbuild/meson.git meson --branch 0.55 --single-branch
+  - ./meson/meson.py build
+  - ninja -C build
