@@ -3,7 +3,7 @@ project('MesonLinkBoostBug', ['d', 'cpp'])
 
 src = ['main.d', 'external.cpp']
 
-boost_dep = dependency('boost', modules : 'thread', required : false)
+boost_dep = dependency('boost', modules : ['thread', 'system'], required : false)
 if not boost_dep.found()
   message('MESON_SKIP_TEST boost is required.')
 endif
