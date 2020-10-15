@@ -49,7 +49,7 @@ jobs:
         run: git clone https://github.com/mesonbuild/meson.git meson --branch 0.53.0 --single-branch
 
       - name: Configure project
-        run: ./meson/meson.py build
+        run: python ./meson/meson.py build
         
       - name: Build
         run: ninja -C build
