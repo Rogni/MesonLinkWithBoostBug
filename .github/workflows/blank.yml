@@ -22,7 +22,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install from apt
-        run: sudo apt-get install python3 ldc2 ninja-build libboost-thread-dev libboost-system-dev g++
+        run: sudo apt-get install python3 ldc ninja-build libboost-thread-dev libboost-system-dev g++
       # Runs a set of commands using the runners shell
       - name: Checkout meson
         run: git clone https://github.com/mesonbuild/meson.git meson --branch 0.53.0 --single-branch
