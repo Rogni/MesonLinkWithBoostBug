@@ -1,12 +1,27 @@
 dist: bionic
-sudo: required
 language: generic
+os: 
+  - windows
+  - linux
+
+addons:
+  apt:
+    packages:
+      - python3
+      - libboost-thread-dev
+      - libboost-system-dev
+      - ldc
+      - ninja-build
+
+compiler:
+  - clang++
 
 
-install:
-  - travis_retry sudo apt-get update
-  - travis_wait 30 sudo apt-get -y install -qq python3 libboost-thread-dev ldc ninja-build
-
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install ninja; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install ldc; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install python3; fi
+  
 script:
   - git clone https://github.com/mesonbuild/meson.git meson --branch 0.53.0 --single-branch
   - ./meson/meson.py build
