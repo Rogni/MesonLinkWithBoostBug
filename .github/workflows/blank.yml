@@ -43,7 +43,7 @@ jobs:
       - name: Choco deps
         uses: crazy-max/ghaction-chocolatey@v1
         with:
-            args: install ninja python3
+            args: install ninja python3 7zip.portable wget
       - name: Get ldc
         run: wget https://github.com/ldc-developers/ldc/releases/download/v1.23.0/ldc2-1.23.0-windows-x64.7z -o ldc2.7z
       - name: unpack ldc2
