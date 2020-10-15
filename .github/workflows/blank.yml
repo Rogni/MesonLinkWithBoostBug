@@ -43,15 +43,18 @@ jobs:
       - name: Choco deps
         uses: crazy-max/ghaction-chocolatey@v1
         with:
-            args: install ninja ldc python3
-      - name: refresh env
-        run: refreshenv
-
+            args: install ninja python3
+      - name: Get ldc
+        run: wget https://github.com/ldc-developers/ldc/releases/download/v1.23.0/ldc2-1.23.0-windows-x64.7z -o ldc2.7z
+      - name: unpack ldc2
+        run: 7z ldc2.7z -o*
+      
       - name: Checkout meson
         run: git clone https://github.com/mesonbuild/meson.git meson --branch 0.53.0 --single-branch
-
+      - name: tree
+        run: tree
       - name: Configure project
-        run: python ./meson/meson.py build
+        run: set "PATH=%PATH%;%cd%\ldc2-1.23.0-windows-x64\bin" && python ./meson/meson.py build
         
       - name: Build
         run: ninja -C build
