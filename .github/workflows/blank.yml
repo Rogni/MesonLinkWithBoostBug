@@ -44,6 +44,8 @@ jobs:
         uses: crazy-max/ghaction-chocolatey@v1
         with:
             args: install ninja ldc python3
+      - name: refresh env
+        run: refreshenv
 
       - name: Checkout meson
         run: git clone https://github.com/mesonbuild/meson.git meson --branch 0.53.0 --single-branch
